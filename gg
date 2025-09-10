@@ -1,0 +1,1868 @@
+MA
+
+a = set(input().split())
+print(len(a))
+
+MB
+
+a = input().split()
+b = input().split()
+print(len(set(a) & set(b)))
+
+MC
+
+a = set(map(int, input().split()))
+b = set(map(int, input().split()))
+print(*sorted(set(a) & set(b)))
+
+MD
+
+a = input().split()
+b = set()
+for i in a:
+    if i in b:
+        print("YES")
+    else:
+        b.add(i)
+        print("NO")
+
+ME
+
+n, m = map(int, input().split())
+a, b = set(), set()
+for i in range(n):
+    a.add(int(input()))
+for i in range(m):
+    b.add(int(input()))
+x = 0
+ab = sorted(list(a & b))
+a, b = sorted(list(a - b)), sorted(list(b - a))
+print(len(ab))
+for elem in ab:
+    print(elem, end=' ')
+print('')
+print(len(a))
+for elem in a:
+    print(elem, end=' ')
+print('')
+print(len(b))
+for elem in b:
+    print(elem, end=' ')
+
+MF
+
+inp = open('input.txt', 'r', encoding="utf-8")
+outp = open('output.txt', 'w', encoding="utf-8")
+strng, wrds = [], set()
+s = (inp.readline()).rstrip()
+while len(s) > 0:
+    strng = list(s.split(' '))
+    s = (inp.readline()).rstrip()
+    for elem in strng:
+        wrds.add(elem)
+outp.write(str(len(wrds)))
+inp.close()
+outp.close()
+
+MG
+
+n = int(input())
+res = set(range(1, n + 1))
+pos, strng = "", input()
+while strng != "HELP":
+    pos = input()
+    strng = set(map(int, strng.split(' ')))
+    if pos == "YES":
+        res &= strng
+    else:
+        res -= strng
+    strng = input()
+for elem in sorted(res):
+    print(elem, end=' ')
+
+MH
+
+n = int(input())
+res = set(range(1, n + 1))
+strng = input()
+while strng != "HELP":
+    strng = set(map(int, strng.split(' ')))
+    if len(res & strng) <= len(res) // 2:
+        res -= strng
+        print("NO")
+    else:
+        res &= strng
+        print("YES")
+    strng = input()
+for elem in sorted(res):
+    print(elem, end=' ')
+
+MI
+
+n = int(input())
+all, onl, cur = set(), set(), set()
+for i in range(n):
+    m = int(input())
+    for j in range(m):
+        lng = input()
+        onl.add(lng)
+        cur.add(lng)
+        if i == 0:
+            all.add(lng)
+        if j == m - 1:
+            all &= cur
+            cur = set()
+print(len(all))
+for i in all:
+    print(i)
+print(len(onl))
+for i in onl:
+    print(i)
+
+MJ
+
+n, k = map(int, input().split())
+res = set()
+ppl = []
+for i in range(k):
+    ppl.append(tuple(map(int, input().split())))
+for i in set(ppl):
+    x, y = i[0], i[1]
+    for j in range(((n - x) // y) + 1):
+        if (x + j * y) % 7 != 0 and (x + j * y) % 7 != 6:
+            res.add(x + j * y)
+print(len(res))
+
+MK
+
+inp = open('input.txt', 'r', encoding="utf-8")
+outp = open('output.txt', 'w', encoding="utf-8")
+wrds = dict()
+s = (inp.readline()).rstrip()
+while len(s):
+    line = list(s.split(" "))
+    s = (inp.readline()).rstrip()
+    for elem in line:
+        if elem in wrds:
+            wrds[elem] += 1
+            outp.write(str(wrds[elem]) + ' ')
+        else:
+            outp.write("0 ")
+            wrds[elem] = 0
+inp.close()
+outp.close()
+
+ML
+
+inp = open('input.txt', 'r')
+outp = open('output.txt', 'w')
+s = (inp.readline()).rstrip()
+wrds = list(s.split(' '))
+sn = dict()
+while len(s) and len(wrds) != 1:
+    sn[wrds[0]], sn[wrds[1]] = wrds[1], wrds[0]
+    s = (inp.readline()).rstrip()
+    wrds = list(s.split(' '))
+while len(s):
+    print(sn[s])
+    s = (inp.readline()).rstrip()
+inp.close()
+outp.close()
+
+MM
+
+inp = open('input.txt', 'r', encoding="utf-8")
+outp = open('output.txt', 'w', encoding="utf-8")
+res = dict()
+s = (inp.readline()).rstrip()
+while len(s):
+    nm, cnt = s.split(" ")
+    if nm not in res:
+        res[nm] = int(cnt)
+    else:
+        res[nm] += int(cnt)
+    s = (inp.readline()).rstrip()
+for elem in sorted(res):
+    outp.write(elem + ' ' + str(res[elem]) + '\n')
+inp.close()
+outp.close()
+
+MN
+
+inp = open('input.txt', 'r', encoding="utf-8")
+outp = open('output.txt', 'w', encoding="utf-8")
+s = (inp.readline()).rstrip()
+strng = list(s.split(' '))
+res = dict()
+while len(s):
+    for wrd in strng:
+        if wrd in res:
+            res[wrd] += 1
+        else:
+            res[wrd] = 1
+    s = (inp.readline()).rstrip()
+    strng = list(s.split(' '))
+outp.write(str((sorted(res.items(), key=lambda x: (-x[1], x[0]))[0][0])))
+inp.close()
+outp.close()
+
+MO
+
+inp = open('input.txt', 'r', encoding="utf-8")
+outp = open('output.txt', 'w', encoding="utf-8")
+n = int((inp.readline()).rstrip())
+res = dict()
+for i in range(n):
+    s = (inp.readline()).rstrip()
+    wrds = list(s.split(' '))
+    res[wrds[0]] = []
+    for j in range(1, len(wrds)):
+        if wrds[j] == "X":
+            wrds[j] = "execute"
+        elif wrds[j] == "R":
+            wrds[j] = "read"
+        else:
+            wrds[j] = "write"
+        res[wrds[0]].append(wrds[j])    
+m = int(inp.readline().rstrip())
+x, crnt = "", ""
+for i in range(m):
+    s = (inp.readline()).rstrip()
+    x, crnt = s.split(' ')
+    if x in res[crnt]:
+        outp.write("OK" + '\n')
+    else:
+        outp.write("Access denied" + '\n')
+inp.close()
+outp.close()
+
+MP
+
+inp = open('input.txt', 'r', encoding="utf-8")
+outp = open('output.txt', 'w', encoding="utf-8")
+s = (inp.readline()).rstrip()
+wrds = list(s.split(' '))
+res = dict()
+while len(s):
+    for elem in wrds:
+        if elem not in res:
+            res[elem] = 0
+        else:
+            res[elem] += 1
+    s = (inp.readline()).rstrip()
+    wrds = list(s.split(' '))
+for elem in sorted(res.items(), key=lambda x: (-x[1], x[0])):
+    outp.write(elem[0] + '\n')
+inp.close()
+outp.close()
+
+MQ
+
+res, nm = dict(), []
+cntr = ""
+for i in range(int(input())):
+    nm = list(input().split(' '))
+    cntr = nm[0]
+    for j in nm[1:len(nm):1]:
+        res[j] = cntr
+for i in range(int(input())):
+    print(res[input()])
+
+MR
+
+sber = dict()
+strng = input().split()
+while strng:
+    if strng[0] == "WITHDRAW":
+        nm, sm = strng[1], int(strng[2])
+        if nm not in sber:
+            sber[nm] = -sm
+        else:
+            sber[nm] -= sm
+    elif strng[0] == "DEPOSIT":
+        nm, sm = strng[1], int(strng[2])
+        if nm not in sber:
+            sber[nm] = sm
+        else:
+            sber[nm] += sm
+    elif strng[0] == "BALANCE":
+        nm = strng[1].rstrip()
+        if nm not in sber:
+            print("ERROR")
+        else:
+            print(sber[nm])
+    elif strng[0] == "INCOME":
+        pcnt = int(strng[1])
+        for i in sber:
+            if sber[i] > 0:
+                sber[i] = sber[i] * (100 + pcnt) // 100
+    else:
+        nm1, nm2, sm = strng[1], strng[2], int(strng[3])
+        if nm1 not in sber:
+            sber[nm1] = -sm
+        else:
+            sber[nm1] -= sm
+        if nm2 not in sber:
+            sber[nm2] = sm
+        else:
+            sber[nm2] += sm
+    try:
+        strng = input().split()
+    except EOFError:
+        strng = ""
+
+MS
+
+res, trns = dict(), ""
+for _ in range(int(input())):
+    wrds = list(input().split(", "))
+    trns, wrds[0] = wrds[0].split(" - ")
+    for elem in wrds:
+        if elem not in res:
+            res[elem] = [trns]
+        else:
+            res[elem].append(trns)
+print(len(res))
+for i in res:
+    res[i].sort()
+for i in sorted(res.items()):
+    print(i[0] + " - " + i[1][0], end="")
+    if len(i[1]) != 1:
+        for j in i[1][1::]:
+            print(", " + j, end="")
+    print('')
+
+MT
+
+wrd, key = [], ""
+err, hp = 0, 0
+res = dict()
+for i in range(int(input())):
+    wrd = input()
+    if wrd.lower() not in res:
+        res[wrd.lower()] = [wrd]
+    else:
+        res[wrd.lower()].append(wrd)
+for i in list(input().split()):
+    key = i.lower()
+    if key in res:
+        if i not in res[key]:
+            err += 1
+    else:
+        hp = 0
+        for j in range(len(key)):
+            if key[j] != i[j]:
+                hp += 1
+        if hp != 1:
+            err += 1
+print(err)
+
+MU
+
+inp = open('input.txt', 'r', encoding="utf-8")
+outp = open('output.txt', 'w', encoding="utf-8")
+res = dict()
+s = (inp.readline()).rstrip()
+while s:
+    nm, obj, sum_ = s.split(' ')
+    sum_ = int(sum_) 
+    if nm not in res:
+        res[nm] = {obj: sum_}
+    elif obj not in res[nm]:
+        res[nm][obj] = sum_
+    else:
+        res[nm][obj] += sum_
+    s = (inp.readline()).rstrip()
+for i in sorted(res.items()):
+    outp.write(i[0] + ":\n")
+    for j in sorted(i[1].items()):
+        outp.write(j[0] + ' ' + str(j[1]) + '\n')
+inp.close()
+outp.close()
+
+
+
+
+EA
+
+from sys import stdin
+
+max_3 = 0
+max_7 = 0
+max_21 = 0
+max_all = 0
+
+for elem in stdin:
+    elem = int(elem)
+    
+    if elem % 21 == 0 and max_21 < elem:
+        max_all = max(max_all, max_21)
+        max_21 = elem
+        continue
+    
+    if elem % 7 == 0:
+        max_7 = max(elem, max_7)
+    elif elem % 3 == 0:
+        max_3 = max(elem, max_3)
+        
+    max_all = max(max_all, elem)
+print(max(max_7 * max_3, max_all * max_21))
+
+EB
+
+inp = open('input.txt', 'r', encoding="utf-8")
+outp = open('output.txt', 'w', encoding="utf-8")
+mod2, mod13, mod26 = 0, 0, 0
+ttl = 0
+s = inp.readline().rstrip()
+while s:
+    crnt = int(s)
+    if crnt % 26 == 0:
+        mod26 += 1
+    elif crnt % 2 == 0:
+        mod2 += 1
+    elif crnt % 13 == 0:
+        mod13 += 1
+    ttl += 1
+    s = inp.readline().rstrip()
+print(mod2 * mod13 + (2 * ttl - mod26 - 1) * (mod26) // 2)
+inp.close()
+outp.close()
+
+EC
+
+inp = open('input.txt', 'r', encoding="utf-8")
+outp = open('output.txt', 'w', encoding="utf-8")
+sum_, mdf = 0, 10001
+s = inp.readline().rstrip()
+while s:
+    x, y = map(int, s.split())
+    sum_ += max(x, y)
+    if abs(x - y) < mdf and abs(x - y) % 3:
+        mdf = abs(x - y)
+    s = inp.readline().rstrip()
+if not (sum_ % 3):
+    if mdf != 10001:
+        sum_ -= mdf
+    else:
+        sum_ = 0
+print(sum_)
+inp.close()
+outp.close()
+
+ED
+
+inp = open('input.txt', 'r', encoding="utf-8")
+outp = open('output.txt', 'w', encoding="utf-8")
+k = int(inp.readline().rstrip())
+box = [0] * k
+s = inp.readline().rstrip()
+while s:
+    n = 0
+    name, put, out = s.split(' ')
+    put = int(put[0:2]) * 60 + int(put[3:5])
+    out = int(out[0:2]) * 60 + int(out[3:5])
+    while n < k and put < box[n]:
+        n += 1
+    if n != k:
+        box[n] = out
+        print(name, n + 1)
+    s = inp.readline().rstrip()
+inp.close()
+outp.close()
+
+EE
+
+inp = open('input.txt', 'r', encoding="utf-8")
+outp = open('output.txt', 'w', encoding="utf-8")
+cnt = [0] * 26
+res, x = "", ''
+flag = True
+let = inp.read(1)
+while let != '\n':
+    cnt[ord(let) - ord('A')] += 1
+    let = inp.read(1)
+for i in range(26):
+    res += chr(i + ord('A')) * (cnt[i] // 2)
+    cnt[i] -= (cnt[i] // 2) * 2
+    if flag and cnt[i] == 1:
+        x = chr(i + ord('A'))
+        flag = False
+print(res + x + res[::-1])
+inp.close()
+outp.close()
+
+EF
+
+inp = open('input.txt', 'r', encoding="utf-8")
+outp = open('output.txt', 'w', encoding="utf-8")
+task = dict()
+s = (inp.readline()).rstrip()
+while s:
+    if s not in task:
+        task[s] = 1
+    else:
+        task[s] += 1
+    s = (inp.readline()).rstrip()
+task = sorted(task.items(), key=lambda item: (-item[1], item[0]))
+i, old, cnt = 0, 0, 0 
+while i < len(task) and (cnt < 3 or task[i][1] == old):
+    old = task[i][1]
+    cnt += 1
+    i += 1
+for i, j in sorted(task[:i]):
+    print(i + ' ' + str(j))
+inp.close()
+outp.close()
+
+EG
+
+inp = open('input.txt', 'r', encoding="utf-8")
+outp = open('output.txt', 'w', encoding="utf-8")
+bal = [0] * 301
+k = int(inp.readline().rstrip())
+s = inp.readline().rstrip()
+while s:
+    ex1, ex2, ex3 = map(int, (s.split(' '))[2:])
+    if min(ex1, ex2, ex3) >= 40:
+        bal[ex1 + ex2 + ex3] += 1
+    s = inp.readline().rstrip()
+n, res = 300, 300
+cnt = 0
+while cnt <= k and n >= 120:
+    if bal[n] > k and cnt == 0:
+        cnt = k + 1
+        res = 1
+    elif bal[n] != 0:
+        if cnt + bal[n] <= k:
+            res = n
+        cnt += bal[n]
+    n -= 1
+if cnt <= k:
+    res = 0
+print(res)
+inp.close()
+outp.close()
+
+EH
+
+inp = open('input.txt', 'r', encoding="utf-8")
+outp = open('output.txt', 'w', encoding="utf-8")
+bal = [0] * 301
+k = int(inp.readline().rstrip())
+s = inp.readline().rstrip()
+while s:
+    ex1, ex2, ex3 = map(int, (s.split(' '))[2:])
+    if min(ex1, ex2, ex3) >= 40:
+        bal[ex1 + ex2 + ex3] += 1
+    s = inp.readline().rstrip()
+n, res = 300, 0
+cnt = 0
+while cnt < k and n >= 120:
+    if bal[n] != 0:
+        if cnt + bal[n] > k:
+            res = n
+        cnt += bal[n]
+    n -= 1
+print(res)
+inp.close()
+outp.close()
+
+EI
+
+inp = open('input.txt', 'r', encoding="utf-8")
+outp = open('output.txt', 'w', encoding="utf-8")
+s = inp.readline().rstrip()
+bal = [0] * 101
+N = 0
+while s:    
+    bal[int((s.split(' '))[-1])] += 1
+    N += 1
+    s = inp.readline().rstrip()
+N = (N * 45) // 100 
+cnt, res = 0, 0
+n = 100
+while cnt < N:
+    if bal[n]:
+        if N < cnt + bal[n]:
+            if 50 < n:
+                res = n
+        else:
+            res = n
+        cnt += bal[n]
+    n -= 1
+print(res)
+inp.close()
+outp.close()
+
+EJ
+
+inp = open('input.txt', 'r', encoding="utf-8")
+outp = open('output.txt', 'w', encoding="utf-8")
+k = int(inp.readline().rstrip())
+pas, res = [0] * (k + 1), []
+s = inp.readline().rstrip()
+while s:
+    inn, out = map(int, (s.split(' '))[2:])
+    pas[inn] += 1
+    pas[out] -= 1
+    s = inp.readline().rstrip()
+max_trn, crnt = 0, 0
+for i in range(1, k + 1):
+    crnt += pas[i]
+    if max_trn < crnt:
+        max_trn = crnt
+        res = [i]
+    elif max_trn == crnt:
+        res.append(i)
+for elem in res:
+    print(str(elem) + '-' + str(elem + 1))
+inp.close()
+outp.close()
+
+EK
+
+inp = open('input.txt', 'r', encoding="utf-8")
+outp = open('output.txt', 'w', encoding="utf-8")
+cur = [0] * 7
+s = inp.readline().rstrip()
+min_, cnt = 0, 0
+while s:
+    num = float(s)
+    cnt += 1
+    if cnt <= 7:
+        for i in range(6):
+            cur[i] = cur[i + 1]
+        cur[6] = num
+        if cnt == 7:
+            min_ = cur[6] * cur[0]
+    else:
+        cur[0] = min(cur[0], cur[1])
+        for i in range(1, 6):
+            cur[i] = cur[i + 1]
+        cur[6] = num
+        min_ = min(min_, cur[0] * cur[6])
+    s = inp.readline().rstrip()
+print(min_)
+inp.close()
+outp.close()
+
+EL
+
+input1 = open('input.txt', 'r')
+output = open('output.txt', 'w')
+cur = [0] * 6
+min1 = 40001
+min2 = 40002
+c = input1.readline().rstrip()
+num = 0
+minc = -1
+count = 0
+curc = -1
+while len(c) > 0:
+    num = int(c)
+    count += 1
+    if count <= 6:
+        for i in range(5):
+            cur[i] = cur[i + 1]
+        cur[5] = num
+    else:
+        if cur[0] % 2 == 0:
+            min2 = min(cur[0], min2)
+        else:
+            min1 = min(cur[0], min1)
+        for i in range(5):
+            cur[i] = cur[i + 1]
+        cur[5] = num
+        if cur[5] % 2 == 0:
+            curc = min(min1, min2) * cur[5]
+        elif min2 != 40002:
+            curc = min2 * cur[5]
+        if minc > curc or minc == -1:
+            minc = curc
+    c = input1.readline().rstrip()
+print(minc)   
+input1.close()
+output.close()
+
+EM
+
+inp = open('input.txt', 'r', encoding="utf-8")
+outp = open('output.txt', 'w', encoding="utf-8")
+nmb = [0] * 4
+crnt, div29, i, res = 0, 0, 0, 0
+s = inp.readline().rstrip()
+for i in range(4):
+    nmb[i] = int(s)
+    s = inp.readline().rstrip()
+i += 1
+while s:
+    crnt = int(s)
+    i += 1
+    if nmb[0] % 29 == 0:
+        div29 += 1
+    for j in range(3):
+        nmb[j] = nmb[j + 1]
+    nmb[3] = crnt
+    if not crnt % 29:
+        res += i - 4
+    else:
+        res += div29
+    s = inp.readline().rstrip()
+print(res)   
+inp.close()
+outp.close()
+
+
+
+
+BA
+
+print(1 << int(input()))
+
+BB
+
+k, n = map(int, input().split())
+print((1 << k) | (1 << n))
+
+BC
+
+a, k = map(int, input().split())
+n = a >> k
+print(n << k)
+
+BD
+
+a, k = map(int, input().split())
+print(a | (1 << k))
+
+BE
+
+a, k = map(int, input().split())
+print((a >> k) ^ (((a >> k) >> 1) << 1))
+
+BF
+
+a, k = map(int, input().split())
+print((a | 1 << k) & ~(((a >> k) ^ (((a >> k) >> 1) << 1)) << k))
+
+BG
+
+a, k = map(int, input().split())
+print(~(1 << k) & a)
+
+BH
+
+a, k = map(int, input().split())
+x = ~((a >> k) << k) & a
+print(x | ((a >> (k + 1)) << k))
+
+BI
+
+print(chr(ord(input()) ^ 32))
+
+BJ
+
+a, k = map(int, input().split())
+print((~((a >> k) << k)) & a)
+
+BK
+
+a, k = map(int, input().split())
+print(((1 << k) ^ (1 << a)) | (((1 << a) << 1) & ((1 << k) << 1)))
+
+BL
+
+a, k = map(int, input().split())
+a = (a << 4) + (a << 1)
+k >>= 4
+print((a + k) & ~(((a + k) >> 5) << 5))
+
+BM
+
+x = int(input())
+print(x | (x + 1))
+
+BN
+
+x = int(input())
+print("NO" if ((x - 1) & x) else "YES")
+
+BO
+
+x = int(input())
+print((1 + ((x - 1) ^ x)) >> 1)
+
+BP
+
+inp = open('input.txt', 'r')
+s = inp.readline().rstrip()
+x = 0
+while s:
+    x ^= int(s)
+    s = inp.readline().rstrip()
+print(x)
+inp.close()
+
+BQ
+
+inp = open('input.txt', 'r')
+s = (inp.readline()).rstrip()
+x, n = 0, 0
+while s:
+    x ^= int(s)
+    n += 1
+    s = (inp.readline()).rstrip()
+for i in range(n):
+    x ^= i
+print(x)
+inp.close()
+
+BR
+
+a = int(input())
+b = int(input())
+a ^= b
+b ^= a
+print(a ^ b, b)
+
+BS
+
+x = int(input())
+a, b = x & 2863311530, x & 5726623061
+print((a >> 1) | (b << 1))
+
+BT
+
+x, y = (input()).split("~")
+sum_ = 0
+for i in range(len(y)):
+    sum_ += (int(y[-i - 1]) << i)
+print(-((1 << len(y)) - sum_) if x == '1' else sum_)
+
+BV
+
+x, res = input(), 0
+for i in range(len(x)):
+    res = ord(x[i]) + (res >> 1) + ((res & 1) << 15)
+    res &= ((1 << 16) - 1)
+print(res)
+
+BW
+
+x = input()
+a, b = 1, 0
+for i in range(len(x)):
+    a += ord(x[i])
+    a %= 65521
+    b += a
+    b %= 65521
+print(a + (b << 16))
+
+BX
+
+x, res = input(), 14695981039346656037
+for i in range(len(x)):
+    res = ((res * 1099511628211) & ((1 << 64) - 1)) ^ ord(x[i])
+print(res)
+
+
+
+
+SA
+
+def hex2int(x):
+    if x >= 'A':
+        return(10 + (ord(x) - ord('A')))
+    return(int(x))
+
+SB
+
+def int2hex(a):
+    if a < 10:
+        return str(a)
+    return chr(ord('A') - 10 + a)
+
+SC
+
+def bin2int(x):
+    sum_ = 0
+    for elem in x:
+        sum_ = int(elem) + 2 * sum_
+    return(sum_)
+
+SD
+
+def hex_int(x):
+    if x >= 'A':
+        return(10 + (ord(x) - ord('A')))
+    return(int(x))
+
+
+def hex2int(x):
+    sum_ = 0
+    for elem in x:
+        sum_ = 16 * sum_ + hex_int(elem)
+    return(sum_)
+
+SE
+
+def int2bin(x):
+    res = ''
+    if not x:
+        return('0')
+    while x > 0:
+        res = str(x % 2) + res
+        x //= 2
+    return(res)
+
+SF
+
+def hex_int(x):
+    if x >= 10:
+        return(chr(ord("A") - 10 + x))
+    return(x)
+
+
+def int2hex(x):
+    res = ''
+    if not x:
+        return('0')
+    while x > 0:
+        res = str(hex_int(x % 16)) + res
+        x //= 16
+    return(res)
+
+SG
+
+def int_str(x):
+    if x >= 10:
+        return(chr(ord("A") - 10 + x))
+    return(x)
+
+
+def str_int(x):
+    if x >= 'A':
+        return(10 + ord(x) - ord('A'))
+    return(x)
+
+
+def int2str(a, n):
+    res = ''
+    if a == 0:
+        res = '0'
+    while a > 0:
+        res = str(int_str(a % n)) + res
+        a //= n
+    return(res)
+
+
+def str2int(a, n):
+    sum_ = 0
+    for elem in a:
+        sum_ = n * sum_ + int(str_int(elem))
+    return(sum_)
+
+
+n = int(input())
+a = input()
+print(int2str(str2int(a, n), int(input())))
+
+SH
+
+def hex_bin(x):
+    res = ""
+    x = x = ord(x) - ord('A') + 10 if x >= 'A' else int(x)
+    for _ in range(4):
+        res = str(x % 2) + res
+        x //= 2
+    return(res)
+
+
+def hex2bin(x):
+    cnt, res = 0, ""
+    if x == '0':
+        res = '0'
+    cnt = ord(x[0]) - ord('A') + 10 if x[0] >= 'A' else int(x[0])
+    while cnt > 0:
+        res = str(cnt % 2) + res
+        cnt //= 2
+    for i in range(1, len(x)):
+        res += hex_bin(x[i])
+    return(res)
+
+SI
+
+def bin_hex(x):
+    sum_ = 0
+    for i in range(4):
+        sum_ = 2 * sum_ + int(x[i])
+    if sum_ >= 10:
+        return(chr(-10 + ord("A") + sum_))
+    return(str(sum_))
+
+
+def bin2hex(x):
+    res, sum_, dvln4 = "", 0, len(x) % 4
+    if dvln4 != 0:
+        for elem in x[:dvln4]:
+            sum_ = 2 * sum_ + int(elem)
+        if sum_ >= 10:
+            res = chr(ord("A") + sum_ - 10)
+        else:
+            res = str(sum_)
+    for i in range((len(x) - dvln4) // 4):
+        res += bin_hex(x[(dvln4 + i * 4):(dvln4 + (i + 1) * 4)])
+    return(res)
+
+SJ
+
+def str_int(x):
+    if x == '$':
+        return(-1)
+    return(int(x))
+
+
+def ter2int(x):
+    sum_ = 0
+    for elem in x:
+        sum_ = 3 * sum_ + str_int(elem)
+    return(sum_)
+
+SK
+
+def fb(x):
+    f1, f2 = 1, 1
+    for _ in range(x):
+        f2 += f1
+        f1 = f2 - f1
+    return(f2)
+
+
+def fib2int(x):
+    x, sum_ = x[::-1], 0
+    for i in range(len(x)):
+        if x[i] == '1':
+            sum_ += fb(i)
+    return(sum_)
+
+SL
+
+def int2ter(x):
+    res = ""
+    if x == 0:
+        res = '0'
+    while x != 0:
+        if x % 3 == 2:
+            res = "$" + res
+            x += 1
+        else:
+            res = str(x % 3) + res
+        x //= 3
+    return(res)
+
+SM
+
+def fb(x):
+    f1, f2 = 1, 2
+    res = [1]
+    while f2 <= x:
+        f2 += f1
+        f1 = f2 - f1
+        res.append(f1)
+    return(res)
+
+
+def int2fib(x):
+    fbl = fb(x)
+    i = len(fbl)
+    res = ['0'] * i
+    i -= 1
+    while x != 0 and 0 <= i:
+        if fbl[i] <= x:
+            res[-i - 1] = '1'
+            x -= fbl[i]
+        i -= 1
+    return(''.join(res))
+
+SN
+
+def str_int(x):
+    if x >= 'A':
+        return(ord(x) - ord('A') + 10)
+    return(int(x))
+
+
+def int_str(x):
+    if x >= 10:
+        return(chr(ord("A") + x - 10))
+    return(str(x))
+
+
+def inc(res, n):
+    n = int_str(n - 1)
+    arr = list(res)
+    i = len(res) - 1
+    while i >= 0 and arr[i] == n:
+        arr[i] = '0'
+        i -= 1
+    if i == -1:
+        res = "1" + ''.join(arr)
+    else:
+        arr[i] = int_str(str_int(arr[i]) + 1)
+        res = ''.join(arr)
+    return(res)
+
+SO
+
+def str_int(x):
+    if x >= 'A':
+        return(ord(x) - ord('A') + 10)
+    return(int(x))
+
+
+def int_str(x):
+    if x >= 10:
+        return(chr(ord("A") + x - 10))
+    return(str(x))
+
+
+def dec(res, n):
+    arr, n = list(res), int_str(n - 1)
+    i = len(res) - 1
+    while i >= 0 and arr[i] == '0':
+        arr[i] = n
+        i -= 1
+    if i == -1:
+        res = '-1'
+    if len(res) != 1 and not i:
+        res = ''.join(arr[1::])
+    else:
+        arr[i] = int_str(str_int(arr[i]) - 1)
+        res = ''.join(arr)
+    return(res)
+
+SP
+
+def inc_ter(x):
+    arr = list(x)
+    i = len(x) - 1
+    while i >= 0 and arr[i] == '1':
+        arr[i] = '$'
+        i -= 1
+    if i == -1:
+        return('1' + ''.join(arr))
+    else:
+        if arr[i] == '$':
+            arr[i] = "0"
+        else:
+            arr[i] = "1"
+        if not i and arr[0] == '0' and len(arr) > 1:
+            return(''.join(arr[1:]))
+        else:
+            return(''.join(arr))
+
+SQ
+
+def dec_ter(x):
+    arr, i = list(x), len(x) - 1
+    while i >= 0 and arr[i] == '$':
+        arr[i] = '1'
+        i -= 1
+    if i == -1:
+        return('$' + ''.join(arr))
+    else:
+        if arr[i] == '0':
+            arr[i] = "$"
+        else:
+            arr[i] = "0"
+        if not i and arr[0] == '0' and len(arr) > 1:
+            return(''.join(arr[1:]))
+        else:
+            return(''.join(arr))
+
+SR
+
+def inc_fib(x):
+    arr, i = list(x), len(x) - 1
+    while i > -1 and ((arr[i - 1] == '1') | (arr[i] == '1')):
+        i -= 1
+        arr[i + 1] = '0'
+    if i < 0:
+        return('1' + ''.join(arr))
+    arr[i] = '1'
+    return(''.join(arr))
+
+SS
+
+def dec_fib(x):
+    arr, i = list(x), len(x) - 1
+    while i > -1 and (arr[i] == '0'):
+        i -= 1
+    if len(arr) > 1 and not i:
+        arr = arr[1:]
+    else:
+        arr[i] = '0'
+        i += 1
+    while i < len(arr):
+        arr[i] = '1'
+        i += 2
+    return(''.join(arr))
+
+ST
+
+def hex2int(x):
+    if x >= 'A':
+        return(ord(x) - ord('A') + 10)
+    return(int(x))
+
+
+def int2hex(x):
+    if x >= 10:
+        return(chr(ord("A") + x - 10))
+    return(str(x))
+
+
+def sum_hex(n1, n2):
+    if len(n1) > len(n2):
+        n1, n2 = n2, n1
+    arr = list(n2)
+    mod, pls, i = 0, 0, -1
+    while -i <= len(n1):
+        pls = hex2int(n1[i]) + hex2int(n2[i]) + mod
+        arr[i] = int2hex(pls % 16)
+        i -= 1
+        mod = pls // 16
+    while -i <= len(arr) and 0 < mod:
+        pls = hex2int(arr[i]) + mod
+        arr[i] = int2hex(pls % 16)
+        i -= 1
+        mod = pls // 16
+    if mod == 1 and -i > len(arr):
+        return('1' + ''.join(arr))
+    return(''.join(arr))
+
+
+
+
+CA
+
+class Point:
+    def __init__(self, x=0, y=0):
+        self.x, self.y = map(int, x.split(' '))
+        
+    def dist(self):
+        return (self.x ** 2 + self.y ** 2) ** 0.5
+    
+    def __str__(self):
+        return str(self.x) + ' ' + str(self.y)
+
+    
+n = int(input())
+max_crd, max_ = 0, 0
+for i in range(n):
+    a = Point(input())
+    crnt = a.dist()
+    if max_ <= crnt:
+        max_, max_crd = crnt, a
+print(max_crd)
+
+CB
+
+class Point:
+    def __init__(self, x=0, y=0):
+        if isinstance(x, str):
+            self.x, self.y = map(int, x.split(' '))
+        else:
+            self.x, self.y = x, y
+    
+    def __iadd__(self, other):
+        self.x += other.x
+        self.y += other.y
+        return self
+    
+    def __truediv__(self, a):
+        return Point(self.x / a, self.y / a)
+    
+    def __str__(self):
+        return str(self.x) + ' ' + str(self.y)
+
+    
+n = int(input())
+cntr = Point(0, 0)
+for i in range(n):
+    cntr += Point(input())
+print(cntr / n)
+
+CC
+
+class Point:
+    def __init__(self, x=0, y=0):
+        if isinstance(x, str):
+            self.x, self.y = map(int, x.split(' '))
+        else:
+            self.x, self.y = x, y
+    
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
+    
+    def __sub__(self, other):
+        return Point(self.x - other.x, self.y - other.y)
+    
+    def dist(self):
+        return (self.x ** 2 + self.y ** 2) ** 0.5
+    
+    def __str__(self):
+        return str(self.x) + ' ' + str(self.y)
+
+    
+n = int(input())
+arr = [0] * n
+max_ = 0
+for i in range(n):
+    arr[i] = Point(input())
+for i in range(n):
+    for j in range(i + 1, n):
+        max_ = max(max_, abs((arr[i] - arr[j]).dist()))
+print(max_)
+
+CD
+
+class Point:
+    def __init__(self, x=0, y=0):
+        if isinstance(x, str):
+            self.x, self.y = map(int, x.split(' '))
+        else:
+            self.x, self.y = x, y
+    
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
+    
+    def __sub__(self, other):
+        return Point(self.x - other.x, self.y - other.y)
+    
+    def dist(self):
+        return (self.x ** 2 + self.y ** 2) ** 0.5
+    
+    def __lt__(self, other):
+        return self.dist() < other.dist()
+    
+    def __str__(self):
+        return str(self.x) + ' ' + str(self.y)
+
+    
+n = int(input())
+arr = [0] * n
+for i in range(n):
+    arr[i] = Point(input())
+arr.sort()
+print(*arr, sep='\n')
+
+CE
+
+class Point:
+    def __init__(self, x=0, y=0):
+        if isinstance(x, str):
+            self.x, self.y = map(int, x.split(' '))
+        else:
+            self.x, self.y = x, y
+    
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
+    
+    def __sub__(self, other):
+        return Point(self.x - other.x, self.y - other.y)
+    
+    def dist(self):
+        return (self.x ** 2 + self.y ** 2) ** 0.5
+    
+    def __lt__(self, other):
+        return self.dist() < other.dist()
+    
+    def __str__(self):
+        return str(self.x) + ' ' + str(self.y)
+
+    
+n = int(input())
+arr = [0] * n
+max_ = 0
+for i in range(n):
+    arr[i] = Point(input())
+for i in range(n):
+    for j in range(i + 1, n):
+        for f in range(j + 1, n):
+            max_ = max(max_, ((arr[i] - arr[j]).dist() + (arr[j] - arr[f]).dist() + (arr[f] - arr[i]).dist()))
+print(max_)
+
+CF
+
+class Point:
+    def __init__(self, x=0, y=0):
+        if isinstance(x, str):
+            self.x, self.y = map(int, x.split(' '))
+        else:
+            self.x, self.y = x, y
+    
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
+    
+    def __sub__(self, other):
+        return Point(self.x - other.x, self.y - other.y)
+    
+    def __mul__(self, a):
+        return Point(self.x * a, self.y * a)
+    
+    def __truediv__(self, a):
+        return Point(self.x / a, self.y / a)
+    
+    def dist(self):
+        return (self.x ** 2 + self.y ** 2) ** 0.5
+    
+    def __lt__(self, other):
+        return self.dist() < other.dist()
+    
+    def __str__(self):
+        return str(self.x) + ' ' + str(self.y)
+
+    
+n = int(input())
+arr = [0] * n
+max_ = 0
+for i in range(n):
+    arr[i] = Point(input())
+for i in range(n):
+    for j in range(i + 1, n):
+        for f in range(j + 1, n):
+            p = ((arr[i] - arr[j]).dist() + (arr[j] - arr[f]).dist() + (arr[f] - arr[i]).dist()) / 2
+            max_ = max(max_, (p * (p - (arr[i] - arr[j]).dist()) * (p - (arr[j] - arr[f]).dist()) * (p - (arr[f] - arr[i]).dist())) ** 0.5)
+print(max_)
+
+CG
+
+class Fraction:
+    def __init__(self, n=0, d=1):
+        if type(n) == str:
+            if ' ' in n:
+                self.a, self.b = map(int, n.split(' '))
+            elif '/' in n:
+                self.a, self.b = map(int, n.split('/'))
+            else:
+                self.a, self.b = int(n), 1
+        elif type(n) == Fraction:
+            self.a, self.b = n.a, n.b
+        elif type(n) == int:
+            self.a, self.b = n, d
+        else:
+            self.a, self.b = 0, 1
+        self.reduce()
+            
+    def reduce(self):
+        a, b = abs(self.a), abs(self.b)
+        c = gcd(a, b)
+        if self.a * self.b < 0:
+            a = -a
+        self.a, self.b = a // c, b // c
+
+    def __str__(self):
+        return str(self.a) if self.b == 1 else f"{self.a}/{self.b}"
+    
+        
+def gcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+
+inp = open('input.txt', 'r', encoding="utf-8")
+a = inp.readline().rstrip()
+while a:
+    print(Fraction(a))
+    a = inp.readline().rstrip()
+inp.close()
+
+CH CI CJ CK CL CM CN CO CP
+
+from sys import set_int_max_str_digits
+
+
+set_int_max_str_digits(1000000000)
+
+
+class Fraction:
+    def __init__(self, n=0, d=1):
+        if type(n) == str:
+            if ' ' in n:
+                self.a, self.b = map(int, n.split(' '))
+            elif '/' in n:
+                self.a, self.b = map(int, n.split('/'))
+            else:
+                self.a, self.b = int(n), 1
+        elif type(n) == Fraction:
+            self.a, self.b = n.a, n.b
+        elif type(n) == int:
+            self.a, self.b = n, d
+        else:
+            self.a, self.b = 0, 1
+        self.reduce()
+            
+    def reduce(self):
+        a, b = abs(self.a), abs(self.b)
+        c = gcd(a, b)
+        if self.a * self.b < 0:
+            a = -a
+        self.a, self.b = a // c, b // c
+
+    def __eq__(self, other):
+        if isinstance(other, Fraction):
+            return self.a * other.b == self.b * other.a
+        return self.a == self.b * other
+    
+    def __ne__(self, other):
+        if isinstance(other, Fraction):
+            return self.a * other.b != self.b * other.a
+        return self.a != self.b * other
+    
+    def __gt__(self, other):
+        if isinstance(other, Fraction):
+            return self.a * other.b > self.b * other.a
+        return self.a > self.b * other
+        
+    def __ge__(self, other):
+        if isinstance(other, Fraction):
+            return self.a * other.b >= self.b * other.a
+        return self.a >= self.b * other
+    
+    def __lt__(self, other):
+        if isinstance(other, Fraction):
+            return self.a * other.b < self.b * other.a
+        return self.a < self.b * other
+
+    def __le__(self, other):
+        if isinstance(other, Fraction):
+            return self.a * other.b <= self.b * other.a
+        return self.a <= self.b * other
+    
+    def __add__(self, other):
+        if isinstance(other, int):
+            return Fraction(self.a + other * self.b, self.b)
+        elif isinstance(other, Fraction):
+            return Fraction(self.a * other.b + self.b * other.a, self.b * other.b)
+        return (self.a / self.b) + other
+
+    def __radd__(self, other):
+        return self.__add__(other)
+
+    def __iadd__(self, other):
+        self = self.__add__(other)
+        return self
+    
+    def __sub__(self, other):
+        if isinstance(other, int):
+            return self.__add__(-other)
+        elif type(other) == Fraction:
+            return self.__add__(-other)
+        return (self.a / self.b) - other
+    
+    def __rsub__(self, other):
+        return (-self).__add__(other)
+
+    def __isub__(self, other):
+        self = self.__add__(-other)
+        return self
+
+    def __pos__(self):
+        return self
+
+    def __neg__(self):
+        return Fraction(-self.a, self.b)
+
+    def __abs__(self):
+        return Fraction(-self.a, self.b) if self.a < 0 else self
+
+    def __mul__(self, other):
+        if isinstance(self, Fraction):
+            if isinstance(other, Fraction):
+                t = Fraction(self.a * other.a, other.b * self.b)
+                t.reduce()
+            elif isinstance(other, int):
+                t = Fraction(self.a * other, self.b)
+                t.reduce()
+            else:
+                t = self.a * other / self.b
+        elif isinstance(self, int):
+            if isinstance(other, Fraction):
+                t = Fraction(self * other.a, other.b)
+                t.reduce()
+        else:
+            t = other.a * self / other.b
+        return t
+        
+    def __rmul__(self, other):
+        return self.__mul__(other)
+        
+    def __imul__(self, other):
+        self = self.__mul__(other)
+        return self
+    
+    def __truediv__(self, other):
+        if isinstance(self, Fraction):
+            if type(other) == Fraction:
+                t = Fraction(self.a * other.b, other.a * self.b)
+                t.reduce()
+            elif type(other) == int:
+                t = Fraction(self.a, self.b * other)
+                t.reduce()
+            else:
+                t = self.a / (other * self.b)
+        return t
+    
+    def __rtruediv__(self, other):
+        if isinstance(self, Fraction):
+            if type(other) == Fraction:
+                t = Fraction(self.a * other.b, other.a * self.b)
+                t.reduce()
+            elif type(other) == int:
+                t = Fraction(self.b * other, self.a)
+                t.reduce()
+            else:
+                t = (other * self.b) / self.a 
+        return t
+    
+    def __itruediv__(self, other):
+        self = self.__truediv__(other)
+        return self
+    
+    def __pow__(self, other):
+        if isinstance(other, int):
+            if other < 0:
+                return Fraction((self.b ** -other), (self.a ** -other))
+            else:
+                return Fraction((self.a ** other), (self.b ** other))
+        elif isinstance(other, float):
+            return (self.a / self.b) ** other
+        else:
+            return (self.a / self.b) ** (other.a / other.b)
+
+    def __rpow__(self, other):
+        if other:
+            return other ** (self.a / self.b)
+        return 0
+
+    def __ipow__(self, other):
+        self = self.__pow__(other)
+        return self
+    
+    def __int__(self):
+        return self.a // self.b
+
+    def __float__(self):
+        return self.a / self.b
+
+    def __round__(self, d=0):
+        return round(self.__float__(), d)
+
+    def __str__(self):
+        return str(self.a) if self.b == 1 else f"{self.a}/{self.b}"
+    
+        
+def gcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+
+CQ
+
+from sys import set_int_max_str_digits
+
+
+set_int_max_str_digits(1000000000)
+
+
+class Fraction:
+    def __init__(self, n=0, d=1):
+        if type(n) == str:
+            if ' ' in n:
+                self.a, self.b = map(int, n.split(' '))
+            elif '/' in n:
+                self.a, self.b = map(int, n.split('/'))
+            else:
+                self.a, self.b = int(n), 1
+        elif type(n) == Fraction:
+            self.a, self.b = n.a, n.b
+        elif type(n) == int:
+            self.a, self.b = n, d
+        else:
+            self.a, self.b = 0, 1
+        self.reduce()
+            
+    def reduce(self):
+        a, b = abs(self.a), abs(self.b)
+        c = gcd(a, b)
+        if self.a * self.b < 0:
+            a = -a
+        self.a, self.b = a // c, b // c
+
+    def __eq__(self, other):
+        if isinstance(other, Fraction):
+            return self.a * other.b == self.b * other.a
+        return self.a == self.b * other
+    
+    def __ne__(self, other):
+        if isinstance(other, Fraction):
+            return self.a * other.b != self.b * other.a
+        return self.a != self.b * other
+    
+    def __gt__(self, other):
+        if isinstance(other, Fraction):
+            return self.a * other.b > self.b * other.a
+        return self.a > self.b * other
+        
+    def __ge__(self, other):
+        if isinstance(other, Fraction):
+            return self.a * other.b >= self.b * other.a
+        return self.a >= self.b * other
+    
+    def __lt__(self, other):
+        if isinstance(other, Fraction):
+            return self.a * other.b < self.b * other.a
+        return self.a < self.b * other
+
+    def __le__(self, other):
+        if isinstance(other, Fraction):
+            return self.a * other.b <= self.b * other.a
+        return self.a <= self.b * other
+    
+    def __add__(self, other):
+        if isinstance(other, int):
+            return Fraction(self.a + other * self.b, self.b)
+        elif isinstance(other, Fraction):
+            return Fraction(self.a * other.b + self.b * other.a, self.b * other.b)
+        return (self.a / self.b) + other
+
+    def __radd__(self, other):
+        return self.__add__(other)
+
+    def __iadd__(self, other):
+        self = self.__add__(other)
+        return self
+    
+    def __sub__(self, other):
+        if isinstance(other, int):
+            return self.__add__(-other)
+        elif type(other) == Fraction:
+            return self.__add__(-other)
+        return (self.a / self.b) - other
+    
+    def __rsub__(self, other):
+        return (-self).__add__(other)
+
+    def __isub__(self, other):
+        self = self.__add__(-other)
+        return self
+
+    def __pos__(self):
+        return self
+
+    def __neg__(self):
+        return Fraction(-self.a, self.b)
+
+    def __abs__(self):
+        return Fraction(-self.a, self.b) if self.a < 0 else self
+
+    def __mul__(self, other):
+        if isinstance(self, Fraction):
+            if isinstance(other, Fraction):
+                t = Fraction(self.a * other.a, other.b * self.b)
+                t.reduce()
+            elif isinstance(other, int):
+                t = Fraction(self.a * other, self.b)
+                t.reduce()
+            else:
+                t = self.a * other / self.b
+        elif isinstance(self, int):
+            if isinstance(other, Fraction):
+                t = Fraction(self * other.a, other.b)
+                t.reduce()
+        else:
+            t = other.a * self / other.b
+        return t
+        
+    def __rmul__(self, other):
+        return self.__mul__(other)
+        
+    def __imul__(self, other):
+        self = self.__mul__(other)
+        return self
+    
+    def __truediv__(self, other):
+        if isinstance(self, Fraction):
+            if type(other) == Fraction:
+                t = Fraction(self.a * other.b, other.a * self.b)
+                t.reduce()
+            elif type(other) == int:
+                t = Fraction(self.a, self.b * other)
+                t.reduce()
+            else:
+                t = self.a / (other * self.b)
+        return t
+    
+    def __rtruediv__(self, other):
+        if isinstance(self, Fraction):
+            if type(other) == Fraction:
+                t = Fraction(self.a * other.b, other.a * self.b)
+                t.reduce()
+            elif type(other) == int:
+                t = Fraction(self.b * other, self.a)
+                t.reduce()
+            else:
+                t = (other * self.b) / self.a 
+        return t
+    
+    def __itruediv__(self, other):
+        self = self.__truediv__(other)
+        return self
+    
+    def __pow__(self, other):
+        if isinstance(other, int):
+            if other < 0:
+                return Fraction((self.b ** -other), (self.a ** -other))
+            else:
+                return Fraction((self.a ** other), (self.b ** other))
+        elif isinstance(other, float):
+            return (self.a / self.b) ** other
+        else:
+            return (self.a / self.b) ** (other.a / other.b)
+
+    def __rpow__(self, other):
+        if other:
+            return other ** (self.a / self.b)
+        return 0
+
+    def __ipow__(self, other):
+        self = self.__pow__(other)
+        return self
+    
+    def max_1c(self):
+        return Fraction(1, int(Fraction(self.b, self.a)) + (self.b % self.a != 0))
+    
+    def __int__(self):
+        return self.a // self.b
+
+    def __float__(self):
+        return self.a / self.b
+
+    def __round__(self, d=0):
+        return round(self.__float__(), d)
+
+    def __str__(self):
+        return str(self.a) if self.b == 1 else f"{self.a}/{self.b}"
+    
+        
+def gcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+
+print((Fraction(input())).max_1c())
